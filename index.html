@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bruna Marques | Psicologia Clínica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #f2f6fb;
+      --bg-white: #ffffff;
+      --accent: #6fa8dc;
+      --text-main: #1f2933;
+      --text-soft: #5f6f82;
+      --border-soft: #e4ecf4;
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* =====================
+       MICROANIMAÇÕES GERAIS
+       ===================== */
+    .fade {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 1.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =====================
+       NAVBAR
+       ===================== */
+    nav {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-soft);
+      border-radius: 48px;
+      padding: 16px 40px;
+      z-index: 1000;
+    }
+
+    nav a {
+      margin: 0 18px;
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* =====================
+       BORBOLETAS (CORRIGIDO)
+       ===================== */
+    .butterfly {
+      position: absolute;
+      width: 180px;
+      height: 120px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.35;
+
+      background-image: url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 120'>\
+      <path d='M100 60 C40 0, 0 40, 60 70 C20 110, 80 120, 100 60 C120 120, 180 110, 140 70 C200 40, 160 0, 100 60'\
+      fill='none' stroke='%236fa8dc' stroke-width='1'/>\
+      </svg>");
+
+      animation: butterflyFloat 36s ease-in-out infinite,
+                 butterflyBreathe 12s ease-in-out infinite;
+    }
+
+    @keyframes butterflyFloat {
+      0%   { transform: translate(0, 0); }
+      25%  { transform: translate(8px, -10px); }
+      50%  { transform: translate(-6px, -18px); }
+      75%  { transform: translate(10px, -8px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes butterflyBreathe {
+      0%,100% { opacity: 0.25; }
+      50%     { opacity: 0.45; }
+    }
+
+    /* variação real (IMPORTANTÍSSIMO) */
+    header .butterfly:nth-of-type(1) { top: 60px; left: 10%; animation-duration: 42s; }
+    header .butterfly:nth-of-type(2) { top: 140px; right: 12%; animation-duration: 48s; }
+    header .butterfly:nth-of-type(3) { bottom: 40px; left: 22%; animation-duration: 54s; }
+    header .butterfly:nth-of-type(4) { bottom: 90px; right: 28%; animation-duration: 60s; }
+    header .butterfly:nth-of-type(5) { bottom: 160px; right: 10%; animation-duration: 66s; }
+    header .butterfly:nth-of-type(6) { top: 220px; left: 30%; animation-duration: 72s; }
+
+    /* acessibilidade */
+    @media (prefers-reduced-motion: reduce) {
+      .butterfly, .fade {
+        animation: none !important;
+      }
+    }
+
+    /* =====================
+       HEADER
+       ===================== */
+    header {
+      padding: 220px 20px 160px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-name {
+      font-size: 3.1rem;
+      font-weight: 200;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-name strong {
+      display: block;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    p {
+      max-width: 760px;
+      margin: 0 auto 22px;
+      color: var(--text-soft);
+    }
+
+    .quote {
+      margin-top: 56px;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #4b5b6b;
+    }
+
+    section { padding: 140px 20px; }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .white { background: var(--bg-white); }
+
+    .split {
+      display: flex;
+      gap: 80px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .split img {
+      width: 280px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    }
+
+    .split-text { max-width: 520px; }
+
+    .item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-soft);
+      color: var(--text-soft);
+    }
+
+    /* =====================
+       CONTATO
+       ===================== */
+    .contact-list {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      background: white;
+      border: 1px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 26px 32px;
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .contact-row:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+    }
+
+    .contact-row img {
+      width: 28px;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .contact-row a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-weight: 400;
+      word-break: break-all;
+    }
+
+    /* =====================
+       WHATSAPP FLUTUANTE
+       ===================== */
+    .whatsapp {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #29A71A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      z-index: 1000;
+      transition: transform 0.6s ease;
+    }
+
+    .whatsapp:hover { transform: scale(1.06); }
+
+    .whatsapp img { width: 40px; }
+
+    footer {
+      padding: 60px 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7b8794;
+      background: var(--bg-white);
+    }
+
+    @media (max-width: 900px) {
+      .split {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#inicio">Início</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#formacao">Formação</a>
+  <a href="#experiencia">Experiência</a>
+  <a href="#contato">Contato</a>
+</nav>
+
+<header id="inicio">
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+
+  <h1 class="fade hero-name">
+    <strong>Psicóloga Bruna Marques</strong>
+  </h1>
+
+  <p class="fade">Cuidados paliativos · Luto · Psicologia hospitalar</p>
+
+  <p class="quote fade">
+    “Você importa por ser você. Importa até o último momento da sua vida.”
+    <br>— Cicely Saunders
+  </p>
+</header>
+
+<section id="sobre" class="white">
+  <div class="container">
+    <h2>Sobre</h2>
+
+    <div class="split fade">
+      <img src="sobre.png" alt="Bruna Marques">
+
+      <div class="split-text">
+        <p>
+          Atendo pessoas que atravessam momentos de adoecimento,
+          perdas significativas e processos de finitude, oferecendo
+          um espaço de escuta cuidadosa, ética e profundamente humana.
+        </p>
+
+        <p>
+          O cuidado psicológico, para mim, não está em apressar respostas,
+          mas em sustentar a presença, respeitar o tempo e acolher
+          aquilo que ainda pode ser dito, sentido e vivido.
+        </p>
+
+        <p>
+          Cada encontro é construído com delicadeza, vínculo e respeito
+          à singularidade de cada história, mesmo — e sobretudo —
+          quando as palavras parecem faltar.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formacao">
+  <div class="container">
+    <h2>Formação</h2>
+
+    <div class="split fade">
+      <img src="formacao.png" alt="Formação acadêmica">
+
+      <div class="split-text">
+        <div class="item">Graduação em Psicologia — UNIP (2023)</div>
+        <div class="item">Pós-graduação em Oncologia — Faculdade São Marcos (2024)</div>
+        <div class="item">Pós-graduação em Cuidados Paliativos — Faculdade São Marcos (2024)</div>
+        <div class="item">Pós-graduação em Psicologia Hospitalar — Hospital Albert Einstein (2025)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia" class="white">
+  <div class="container">
+    <h2>Experiência profissional</h2>
+
+    <div class="split fade">
+      <img src="experiencias.png" alt="Experiência profissional">
+
+      <div class="split-text">
+        <div class="item">Atendimento clínico — desde 2023</div>
+        <div class="item">Hospital Unimed Araraquara — desde 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="container">
+    <h2>Contato</h2>
+
+    <div class="contact-list fade">
+      <div class="contact-row">
+        <img src="email.png">
+        <a href="mailto:psicologia.brunamarques@gmail.com">psicologia.brunamarques@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <img src="whats.png">
+        <a href="https://wa.me/5516997515816">16&nbsp;99751&nbsp;5816</a>
+      </div>
+      <div class="contact-row">
+        <img src="insta.jpg">
+        <a href="https://instagram.com/brunmarqes" target="_blank">@brunmarqes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 · Psicologia clínica · Cuidado, escuta e presença
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5516997515816" target="_blank">
+  <img src="whats-icon.png" alt="WhatsApp">
+</a>
+
+</body>
+</html>
+

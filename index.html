@@ -46,7 +46,7 @@
     }
 
     /* =====================
-       NAVBAR
+       NAVBAR (DESKTOP)
        ===================== */
     nav {
       position: fixed;
@@ -71,8 +71,23 @@
 
     nav a:hover { color: var(--accent); }
 
+    /* botão hamburger (invisível no desktop) */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.9rem;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    .menu-links {
+      display: flex;
+      align-items: center;
+    }
+
     /* =====================
-       BORBOLETAS (CORRIGIDO)
+       BORBOLETAS
        ===================== */
     .butterfly {
       position: absolute;
@@ -105,20 +120,12 @@
       50%     { opacity: 0.45; }
     }
 
-    /* variação real (IMPORTANTÍSSIMO) */
     header .butterfly:nth-of-type(1) { top: 60px; left: 10%; animation-duration: 42s; }
     header .butterfly:nth-of-type(2) { top: 140px; right: 12%; animation-duration: 48s; }
     header .butterfly:nth-of-type(3) { bottom: 40px; left: 22%; animation-duration: 54s; }
     header .butterfly:nth-of-type(4) { bottom: 90px; right: 28%; animation-duration: 60s; }
     header .butterfly:nth-of-type(5) { bottom: 190px; right: 10%; animation-duration: 66s; }
     header .butterfly:nth-of-type(6) { top: 150px; left: 30%; animation-duration: 72s; }
-
-    /* acessibilidade */
-    @media (prefers-reduced-motion: reduce) {
-      .butterfly, .fade {
-        animation: none !important;
-      }
-    }
 
     /* =====================
        HEADER
@@ -252,7 +259,6 @@
     }
 
     .whatsapp:hover { transform: scale(1.06); }
-
     .whatsapp img { width: 40px; }
 
     footer {
@@ -263,7 +269,54 @@
       background: var(--bg-white);
     }
 
-    @media (max-width: 900px) {
+    /* =====================
+       MOBILE – AJUSTES APENAS
+       ===================== */
+    @media (max-width: 768px) {
+
+      /* menu */
+      nav {
+        top: 16px;
+        padding: 14px 20px;
+        width: calc(100% - 32px);
+        border-radius: 22px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .menu-links {
+        display: none;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      nav.open .menu-links {
+        display: flex;
+      }
+
+      nav a {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      /* butterflies */
+      .butterfly {
+        width: 100px;
+        height: 65px;
+        opacity: 0.18;
+        pointer-events: none;
+        animation-duration: 55s !important;
+      }
+
+      header .butterfly:nth-of-type(4),
+      header .butterfly:nth-of-type(5),
+      header .butterfly:nth-of-type(6) {
+        display: none;
+      }
+
       .split {
         flex-direction: column;
         text-align: center;
@@ -275,11 +328,15 @@
 <body>
 
 <nav>
-  <a href="#inicio">Início</a>
-  <a href="#sobre">Sobre</a>
-  <a href="#formacao">Formação</a>
-  <a href="#experiencia">Experiência</a>
-  <a href="#contato">Contato</a>
+  <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+
+  <div class="menu-links">
+    <a href="#inicio">Início</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#formacao">Formação</a>
+    <a href="#experiencia">Experiência</a>
+    <a href="#contato">Contato</a>
+  </div>
 </nav>
 
 <header id="inicio">
@@ -305,28 +362,12 @@
 <section id="sobre" class="white">
   <div class="container">
     <h2>Sobre</h2>
-
     <div class="split fade">
       <img src="sobre.png" alt="Bruna Marques">
-
       <div class="split-text">
-        <p>
-          Atendo pessoas que atravessam momentos de adoecimento,
-          perdas significativas e processos de finitude, oferecendo
-          um espaço de escuta cuidadosa, ética e profundamente humana.
-        </p>
-
-        <p>
-          O cuidado psicológico, para mim, não está em apressar respostas,
-          mas em sustentar a presença, respeitar o tempo e acolher
-          aquilo que ainda pode ser dito, sentido e vivido.
-        </p>
-
-        <p>
-          Cada encontro é construído com delicadeza, vínculo e respeito
-          à singularidade de cada história, mesmo — e sobretudo —
-          quando as palavras parecem faltar.
-        </p>
+        <p>Atendo pessoas que atravessam momentos de adoecimento, perdas significativas e processos de finitude, oferecendo um espaço de escuta cuidadosa, ética e profundamente humana.</p>
+        <p>O cuidado psicológico, para mim, não está em apressar respostas, mas em sustentar a presença, respeitar o tempo e acolher aquilo que ainda pode ser dito, sentido e vivido.</p>
+        <p>Cada encontro é construído com delicadeza, vínculo e respeito à singularidade de cada história.</p>
       </div>
     </div>
   </div>
@@ -335,10 +376,8 @@
 <section id="formacao">
   <div class="container">
     <h2>Formação</h2>
-
     <div class="split fade">
       <img src="formacao.png" alt="Formação acadêmica">
-
       <div class="split-text">
         <div class="item">Graduação em Psicologia — UNIP (2023)</div>
         <div class="item">Pós-graduação em Oncologia — Faculdade São Marcos (2024)</div>
@@ -352,10 +391,8 @@
 <section id="experiencia" class="white">
   <div class="container">
     <h2>Experiência profissional</h2>
-
     <div class="split fade">
       <img src="experiencias.png" alt="Experiência profissional">
-
       <div class="split-text">
         <div class="item">Atendimento clínico — desde 2023</div>
         <div class="item">Hospital Unimed Araraquara — desde 2024</div>
@@ -367,7 +404,6 @@
 <section id="contato">
   <div class="container">
     <h2>Contato</h2>
-
     <div class="contact-list fade">
       <div class="contact-row">
         <img src="email.png">
@@ -393,6 +429,20 @@
   <img src="whats-icon.png" alt="WhatsApp">
 </a>
 
+<script>
+  const nav = document.querySelector('nav');
+  const toggle = document.querySelector('.menu-toggle');
+
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+    });
+  });
+</script>
+
 </body>
 </html>
-
